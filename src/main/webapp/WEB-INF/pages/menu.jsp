@@ -10,7 +10,7 @@
                 <li class="nav-item">
                     <a class="nav-link
                         ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/"))
-                        eq '/about.jsp' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/pages/cars.jsp">
+                        eq '/about.jsp' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/pages/about.jsp">
                         About
                     </a>
                 </li>
@@ -23,9 +23,11 @@
                     </a>
                 </li>
 
-                <li class="nav-item"> <a class="nav-link" href="#">Link</a> </li>
+
                 <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <a class="nav-link">
+                        Users
+                    </a>
                 </li>
             </ul>
             <ul class = "navbar-nav">
@@ -36,6 +38,8 @@
                 </li>
 
             </ul>
+
+
         </div>
         </div>
     </nav>

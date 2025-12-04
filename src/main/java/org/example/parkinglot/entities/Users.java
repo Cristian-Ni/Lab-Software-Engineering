@@ -35,13 +35,13 @@ public class Users {
     private String email;
 
     @OneToMany(mappedBy = "owner", orphanRemoval = true)
-    private Set<Cars> cars = new LinkedHashSet<>();
+    private Set<Car> cars = new LinkedHashSet<>();
 
-    public Set<Cars> getCars() {
+    public Set<Car> getCars() {
         return cars;
     }
 
-    public void setCars(Set<Cars> cars) {
+    public void setCars(Set<Car> cars) {
         this.cars = cars;
     }
 
