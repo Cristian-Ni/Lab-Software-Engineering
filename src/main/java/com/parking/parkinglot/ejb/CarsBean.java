@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.example.parkinglot.entities.Car;
+import org.example.parkinglot.entities.Users;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -38,5 +39,19 @@ public class CarsBean
         return cars.stream().map(
                 car -> new CarDto(car.getId(), car.getLicensePlate(), car.getParkingSpot(), car.getOwner().getUsername()
                 )).toList();
+    }
+
+    public void createCar(String licensePlate, String parkingSpot, Long userId)
+    {
+        LOG.info("createCar");
+        Car car = new Car();
+        car.setLicensePlate(licensePlate);
+        car.setParkingSpot(parkingSpot);
+
+        Users user = entityManager.find(Users.class, userId);
+        user.getCars().add(car);
+        car.setOwner(user);
+
+        entityManager.persist(car);
     }
 }
