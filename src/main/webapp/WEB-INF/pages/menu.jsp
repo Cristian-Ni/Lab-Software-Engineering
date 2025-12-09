@@ -25,7 +25,9 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link ${activePage eq 'User' ? 'active' : ''}"
+                       aria-current="page"
+                       href="${pageContext.request.contextPath}/User">
                         Users
                     </a>
                 </li>
