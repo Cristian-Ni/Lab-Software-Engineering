@@ -19,6 +19,12 @@
                 <div class="col">
                         ${car.ownerName}
                 </div>
+                <div>
+                    <a class="btn btn-secondary"
+                       href="${pageContext.request.contextPath}/EditCar?id=${car.id}">
+                        Edit Car
+                    </a>
+                </div>
             </div>
         </c:forEach>
     </div>

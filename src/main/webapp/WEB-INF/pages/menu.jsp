@@ -31,6 +31,14 @@
                         Users
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class = "nav-link ${activePage == 'EditCar' ? 'active' : ''}"
+                       href = "${pageContext.request.contextPath}/EditCar"
+                       aria-current="${activePage == 'EditCar' ? 'page' : ''}">
+                        Cars
+                    </a>
+                </li>
             </ul>
             <ul class = "navbar-nav">
                 <li class = "nav-item">

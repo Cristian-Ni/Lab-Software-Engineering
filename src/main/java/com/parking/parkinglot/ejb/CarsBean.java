@@ -54,4 +54,27 @@ public class CarsBean
 
         entityManager.persist(car);
     }
+
+    public CarDto findById(Long carId) {
+        LOG.info("findById");
+        Car car = entityManager.find(Car.class, carId);
+        CarDto carDto = new CarDto(car.getId(), car.getLicensePlate(), car.getParkingSpot(), car.getOwner().getUsername());
+        return carDto;
+    }
+
+    public void updateCar(Long carId, String licensePlate, String parkingSpot, Long userId)
+    {
+        Car car = entityManager.find(Car.class, carId);
+        car.setLicensePlate(licensePlate);
+        car.setParkingSpot(parkingSpot);
+
+        //remove this car from old user
+        Users oldUser = car.getOwner();
+        oldUser.getCars().remove(car);
+
+        //add car to new owner
+        Users user = entityManager.find(Users.class, userId);;
+        user.getCars().add(car);
+        car.setOwner(user);
+    }
 }
