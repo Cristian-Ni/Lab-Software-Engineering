@@ -77,4 +77,15 @@ public class CarsBean
         user.getCars().add(car);
         car.setOwner(user);
     }
+
+    public void deleteCarsByIds(List<Long> carIds)
+    {
+        LOG.info("deleteCarsByIds");
+        for(Long carId : carIds)
+        {
+            Car car = entityManager.find(Car.class, carId);
+            entityManager.remove(car);
+        }
+
+    }
 }
