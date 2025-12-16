@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header data-bs-theme="dark">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
@@ -16,35 +17,38 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class = "nav-link ${activePage == 'Cars' ? 'active' : ''}"
-                       href = "${pageContext.request.contextPath}/Cars"
-                       aria-current="${activePage == 'Cars' ? 'page' : ''}">
-                        Cars
-                    </a>
+                    <c:if test="${pageContext.request.isUserInRole('READ_CARS')}">
+                        <a class = "nav-link ${activePage == 'Cars' ? 'active' : ''}"
+                           href = "${pageContext.request.contextPath}/Cars"
+                           aria-current="${activePage == 'Cars' ? 'page' : ''}">
+                            Cars
+                        </a>
+                    </c:if>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link ${activePage eq 'User' ? 'active' : ''}"
-                       aria-current="page"
-                       href="${pageContext.request.contextPath}/User">
-                        Users
-                    </a>
+                    <c:if test="${pageContext.request.isUserInRole('READ_CARS')}">
+                        <a class="nav-link ${activePage eq 'User' ? 'active' : ''}"
+                           aria-current="page"
+                           href="${pageContext.request.contextPath}/User">
+                            Users
+                        </a>
+                    </c:if>
                 </li>
 
-                <li class="nav-item">
-                    <a class = "nav-link ${activePage == 'EditCar' ? 'active' : ''}"
-                       href = "${pageContext.request.contextPath}/EditCar"
-                       aria-current="${activePage == 'EditCar' ? 'page' : ''}">
-                        Cars
-                    </a>
-                </li>
+
             </ul>
             <ul class = "navbar-nav">
                 <li class = "nav-item">
-                    <a class = "nav-link" href = "${pageContext.request.contextPath}/Login">
-                        Login
-                    </a>
+                    <c:choose>
+                        <c:when test="${pageContext.request.getRemoteUser() == null}">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
 
             </ul>
