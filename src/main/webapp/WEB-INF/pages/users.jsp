@@ -6,24 +6,28 @@
 
   <body>
     <h1>Users</h1>
+    <form method="POST" action="${pageContext.request.contextPath}/User">
+      <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+        <a href="${pageContext.request.contextPath}/AddUser"
+           class="btn btn-primary btn-lg">
+          Add User
+        </a>
+      </c:if>
 
-    <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
-      <a href="${pageContext.request.contextPath}/AddUser"
-         class="btn btn-primary btn-lg">
-        Add User
-      </a>
-    </c:if>
-    <div class="container-text-center">
-      <div class="row">
-        <div class="col">
-          Admin
-        </div>
+      <div class="container-text-center">
+        <c:forEach var="user" items="${users}">
+          <div class="row">
+            <div class="col">
+              ${user.username}
+            </div>
 
-        <div class="col">
-          admin@gmail.com
-        </div>
+            <div class="col">
+                ${user.username}
+            </div>
+          </div>
+        </c:forEach>
       </div>
-    </div>
+    </form>
   </body>
 </t:pageTemplate>
 
