@@ -14,6 +14,10 @@ public class Car {
     @JoinColumn(name = "owner_id", nullable = false)
     private Users owner;
 
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    private CarPhoto carPhoto;
+
+
     public Long getId() {
         return id;
     }
@@ -27,6 +31,14 @@ public class Car {
 
     @Column(name = "license_plate")
     private String licensePlate;
+
+    public CarPhoto getCarPhoto() {
+        return carPhoto;
+    }
+
+    public void setCarPhoto(CarPhoto carPhoto) {
+        this.carPhoto = carPhoto;
+    }
 
     public Users getOwner() {
         return owner;
@@ -50,5 +62,14 @@ public class Car {
 
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
+    }
+
+    public Object getPhoto()
+    {
+        return carPhoto;
+    }
+
+    public void setPhoto(CarPhoto photo) {
+        this.carPhoto = photo;
     }
 }
